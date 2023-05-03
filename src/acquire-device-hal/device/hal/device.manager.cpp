@@ -200,12 +200,7 @@ const struct DeviceIdentifier*
 DeviceManagerV0::select(DeviceKind kind, const std::string& name) const
 {
     std::regex re(name.c_str());
-    for (const auto& identifier : identifiers_) {
-        LOG("found %s %s %d",
-            device_kind_as_string(identifier.identifier_.kind),
-            identifier.identifier_.name,
-            identifier.status_);
-    }
+    LOG("%d", identifiers_.size());
     for (const auto& identifier : identifiers_) {
         if (identifier.identifier_.kind == kind) {
             // regex match for name
@@ -213,12 +208,12 @@ DeviceManagerV0::select(DeviceKind kind, const std::string& name) const
               name.empty() ||
               std::regex_match((const char*)identifier.identifier_.name, re);
 
-            LOG("Check name (%d): %s %s %s",
-                (int)(std::char_traits<char8_t>::length(
-                  (const char8_t*)identifier.identifier_.name)),
-                name.empty() ? "(empty)" : name.c_str(),
-                name_match ? "==" : "!=",
-                identifier.identifier_.name);
+            DEBUG("Check name (%d): %s %s %s",
+                  (int)(std::char_traits<char8_t>::length(
+                    (const char8_t*)identifier.identifier_.name)),
+                  name.empty() ? "(empty)" : name.c_str(),
+                  name_match ? "==" : "!=",
+                  identifier.identifier_.name)
 
             if (name_match) {
                 LOG("Selecting (%d,%d) for %s \"%s\"",
