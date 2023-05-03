@@ -339,6 +339,7 @@ device_manager_select_inner_(const struct DeviceManager* self_,
         std::string name;
         if (name_ && bytes_of_name) {
             name.assign(name_, bytes_of_name);
+            LOGE("Name is: %s", name.c_str());
             // Defensive checking of 'bytes_of_name'
             // It's easy to get wrong.
             if (*name.rbegin() == '\0') {
