@@ -207,12 +207,12 @@ DeviceManagerV0::select(DeviceKind kind, const std::string& name) const
               name.empty() ||
               std::regex_match((const char*)identifier.identifier_.name, re);
 
-            DEBUG("Check name (%d): %s %s %s",
+            LOG("Check name (%d): %s %s %s",
                   (int)(std::char_traits<char8_t>::length(
                     (const char8_t*)identifier.identifier_.name)),
                   name.empty() ? "(empty)" : name.c_str(),
                   name_match ? "==" : "!=",
-                  identifier.identifier_.name)
+                  identifier.identifier_.name);
 
             if (name_match) {
                 LOG("Selecting (%d,%d) for %s \"%s\"",
