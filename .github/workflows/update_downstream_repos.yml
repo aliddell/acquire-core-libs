@@ -26,3 +26,13 @@ jobs:
         with:
           repository: 'acquire-driver-common'
           submodules: true
+
+      - name: Update the acquire-core-libs submodule
+        run: |
+          pushd src/acquire-core-libs
+          git checkout ${{ github.sha }}
+          popd
+          git add src/acquire-core-libs
+          git commit -m "(automated) update acquire-core-libs"
+          git push
+        working-directory: ${{github.workspace}}/acquire-driver-common
