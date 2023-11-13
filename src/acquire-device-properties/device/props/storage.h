@@ -20,13 +20,13 @@ extern "C"
         struct PixelScale pixel_scale_um;
 
         /// Dimensions of chunks, in pixels.
-        struct storage_properties_sharding_s
+        struct storage_properties_chunking_s
         {
             uint32_t width, height, planes;
         } chunk_dims_px;
 
         /// Dimensions of shards, in chunks.
-        struct storage_properties_chunking_s
+        struct storage_properties_sharding_s
         {
             uint32_t width, height, planes;
         } shard_dims_chunks;
